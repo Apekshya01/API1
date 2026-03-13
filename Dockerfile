@@ -15,7 +15,7 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 # Use a slim JDK image for the runtime stage
-FROM openjdk:21-jdk-slim
+FROM eclipse-temurin:17-jdk
 
 # Expose the application's port
 EXPOSE 8081
@@ -25,5 +25,6 @@ COPY --from=build /app/target/API1-1.jar api1.jar
 
 # Set the entrypoint to run the jar file
 ENTRYPOINT ["java", "-jar", "api1.jar"]
+
 
 
